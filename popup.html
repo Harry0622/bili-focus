@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
+  <title>重点关注</title><link rel="stylesheet" href="popup.css"><link rel="stylesheet" href="popup-custom.css"><link rel="stylesheet" href="popup-library.css">
+</head>
+<body>
+  <header class="header">
+    <div class="brand"><img src="icons/32.png" width="28" height="28" alt=""><h1>重点关注</h1></div>
+    <div class="header-actions"><button id="theme-toggle" class="icon-button" aria-label="切换到深色" title="切换到深色"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.5A9 9 0 0 1 8.5 4 9 9 0 1 0 20 15.5Z"/></svg></button><button id="settings-toggle" class="icon-button" aria-label="设置" aria-expanded="false" aria-controls="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16M8 4v6m8 4v6"/></svg></button></div>
+  </header>
+  <section id="storage-warning" hidden role="status"><span>数据已超过 1GB，请手动清理</span><button id="storage-cleanup">去清理</button></section>
+  <main>
+    <section id="focus" class="focus" aria-labelledby="focus-title" aria-busy="true">
+      <div class="focus-heading"><div id="focus-cover" class="focus-cover" aria-hidden="true"></div><div class="focus-text"><h2 id="focus-title">正在读取本机清单</h2><p id="focus-meta">无需等待网络</p></div></div>
+      <div class="progress-info"><span id="focus-status">上次观看</span><span id="focus-time" title="最近记录的位置，实际播放以 B站为准">—</span></div>
+      <div class="progress-track"><div id="focus-progress"></div></div>
+      <button id="resume-button" class="primary" disabled><span id="resume-label">读取中</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6M4 12h11"/></svg></button>
+      <div class="focus-foot"><span id="focus-last"></span><button id="replay" class="text-button" hidden>重看上次位置</button></div>
+      <p id="focus-warning" class="inline-error" hidden></p>
+    </section>
+    <section class="library" aria-labelledby="library-title">
+      <div class="library-toolbar"><h2 id="library-title">我的清单 <span id="count">—</span></h2><div class="library-controls"><div class="filters" role="group" aria-label="筛选清单"><button data-filter="all" aria-pressed="true">全部</button><button data-filter="watching" aria-pressed="false">进行中</button><button data-filter="completed" aria-pressed="false">已看完</button></div><button id="group-create" class="icon-button" aria-label="新建分组" title="新建分组"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5h6l3 3h9v12H3V7Zm9 5v5m-2.5-2.5h5"/></svg></button></div></div>
+      <label class="library-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="library-search" type="search" placeholder="搜索名称、原标题或UP主" aria-label="搜索视频" autocomplete="off"></label>
+      <div id="list" class="list-scroll" aria-label="选择要继续观看的视频" aria-busy="true"><div class="skeleton-line"></div><div class="skeleton-line"></div></div>
+    </section>
+  </main>
+  <section id="add-panel" class="drawer" aria-label="添加视频" hidden>
+    <div class="drawer-heading"><h2>添加视频</h2><button data-close-panel class="icon-button" aria-label="收起添加视频">×</button></div>
+    <button id="add-current" class="add-primary" disabled>添加当前页</button><p id="current-status" class="help" role="status">正在读取当前页</p>
+    <div class="add-fields"><label for="current-name">保存名称</label><input id="current-name" maxlength="200" placeholder="留空使用原标题" disabled><label for="current-group">分组</label><div class="group-picker"><select id="current-group" aria-label="当前页分组"></select><button id="current-new-group" class="icon-button" aria-label="添加当前页时新建分组">＋</button></div></div>
+    <details id="link-add-details" class="settings-details"><summary>通过链接添加</summary><form id="add-form"><label class="sr-only" for="video-link">B站视频链接或 BV / av号</label><input id="video-link" placeholder="视频链接 / BV号 / av号" autocomplete="off" required><button type="submit" class="secondary" aria-label="读取链接信息">读取</button></form><div id="link-fields" class="add-fields" hidden><label for="link-name">保存名称</label><input id="link-name" maxlength="200" placeholder="留空使用原标题"><label for="link-group">分组</label><div class="group-picker"><select id="link-group" aria-label="链接分组"></select><button id="link-new-group" class="icon-button" aria-label="添加链接时新建分组">＋</button></div><button id="add-link-save" class="secondary full-width">保存链接视频</button></div></details>
+    <div class="add-options"><label><input id="entire" type="checkbox"> 添加全部分P</label></div>
+    <p id="add-error" class="inline-error" role="alert" hidden></p>
+  </section>
+  <section id="bookmarks-panel" class="drawer" aria-label="时间书签" hidden>
+    <div class="drawer-heading"><h2>时间书签 <span id="bookmark-count">0</span></h2><button data-close-panel class="icon-button" aria-label="收起时间书签">×</button></div>
+    <p id="bookmark-video" class="help truncate"></p><ul id="bookmark-list"></ul>
+    <button id="add-bookmark" class="secondary full-width">＋ 记录当前播放时间</button>
+    <div class="record-actions"><button id="refresh-record" class="text-button">刷新视频信息</button><button id="delete-record" class="text-button danger">删除此分P</button></div>
+  </section>
+  <section id="settings" class="drawer" aria-label="轻量设置" hidden>
+    <div class="drawer-heading"><h2>设置</h2><button data-close-panel class="icon-button" aria-label="收起设置">×</button></div>
+    <div class="theme-heading"><h3>外观</h3></div>
+    <div id="rare-theme-host" data-rare-state="idle"><div class="theme-placeholder" aria-label="主题组件待加载"><span>浅色</span><span>深色</span><span>随系统</span></div></div>
+    <p id="theme-error" class="inline-error" hidden>外观组件未能载入。<button id="theme-retry" class="text-button">重试</button></p>
+    <div class="accent-heading"><h3>强调色</h3><button id="accent-reset" class="text-button">恢复默认</button></div>
+    <div class="accent-row"><div class="accent-presets" role="group" aria-label="预设颜色"><button data-accent-color="#0f766e" style="--swatch:#0f766e" aria-label="青绿" aria-pressed="true"><span></span></button><button data-accent-color="#2563eb" style="--swatch:#2563eb" aria-label="海蓝" aria-pressed="false"><span></span></button><button data-accent-color="#c0643a" style="--swatch:#c0643a" aria-label="陶橙" aria-pressed="false"><span></span></button><button data-accent-color="#be3f64" style="--swatch:#be3f64" aria-label="莓红" aria-pressed="false"><span></span></button><button data-accent-color="#6c7b34" style="--swatch:#6c7b34" aria-label="橄榄" aria-pressed="false"><span></span></button></div><div class="accent-custom"><input id="accent-picker" type="color" value="#0f766e" aria-label="自定义颜色"><input id="accent-hex" type="text" value="#0F766E" maxlength="7" aria-label="颜色值" spellcheck="false"></div></div>
+    <label class="setting-row"><span>在新标签页打开<small>关闭时复用已打开的视频</small></span><input id="new-tab" type="checkbox" role="switch"></label>
+    <label class="setting-row"><span>默认添加整个合集</span><input id="default-entire" type="checkbox" role="switch"></label>
+    <label class="setting-row"><span>播放时采样间隔</span><select id="interval"><option value="5">5 秒</option><option value="10">10 秒</option><option value="15">15 秒</option><option value="30">30 秒</option><option value="60">60 秒</option></select></label>
+    <details class="settings-details"><summary>播放完成判定</summary><label class="setting-row"><span>看完判定比例</span><select id="completion"><option value="90">90%</option><option value="95">95%</option><option value="100">100%</option></select></label><label class="setting-row"><span>或剩余时间不超过</span><select id="remaining"><option value="0">0 秒</option><option value="10">10 秒</option><option value="30">30 秒</option><option value="60">60 秒</option></select></label></details>
+    <details id="cleanup-panel" class="settings-details"><summary><span>空间与清理</span><span id="storage-usage"></span></summary><div class="storage-track"><div id="storage-bar"></div></div><p id="storage-detail" class="help"></p><label class="setting-row"><span>清理多久以前的旧记录</span><select id="cleanup-days"><option value="7">7 天</option><option value="30">30 天</option><option value="60">60 天</option><option value="90">90 天</option><option value="180">180 天</option><option value="365">365 天</option></select></label><label class="setting-row"><span>保留带书签的视频</span><input id="cleanup-keep" type="checkbox" checked></label><p class="help">仅清理过期的已看完、失效和待补全记录。</p><p id="cleanup-preview" class="cleanup-preview" aria-live="polite"></p><button id="cleanup-run" class="secondary full-width">手动清理</button><button id="cleanup-undo" class="text-button full-width" hidden>恢复最近一次清理</button><p class="help">清理后 8 秒内可撤销。</p></details>
+    <details class="settings-details"><summary>本机备份</summary><div class="backup-actions"><button id="export" class="secondary">导出 JSON</button><button id="import" class="secondary">导入备份</button><input id="import-file" type="file" accept=".json,application/json" hidden></div><p class="help">合并清单和书签，进度取较新记录，保留当前设置。</p></details>
+    <p class="credits"><a href="https://rareui.com" target="_blank" rel="noreferrer">Rare UI</a></p>
+  </section>
+  <nav class="utility-bar" aria-label="次要操作"><button id="add-toggle" aria-expanded="false" aria-controls="add-panel">＋ 添加视频</button><button id="bookmarks-toggle" aria-expanded="false" aria-controls="bookmarks-panel">时间书签 <span id="bookmark-badge">0</span></button><button id="more-toggle" aria-label="更多设置" aria-expanded="false" aria-controls="settings">更多 ···</button></nav>
+  <div id="toast" role="status" hidden><span></span><button id="undo" hidden>撤销</button><button id="toast-close" aria-label="关闭提示">×</button></div>
+  <dialog id="note-dialog"><form id="note-form"><div class="drawer-heading"><h2 id="note-title">记录时间点</h2><button type="button" id="note-close" class="icon-button" aria-label="关闭">×</button></div><p id="note-time"></p><label for="note-input">一句备注 <span>可选</span></label><input id="note-input" maxlength="300" placeholder="写下这个时间点值得再看的原因"><div class="dialog-actions"><button type="button" id="note-cancel" class="secondary">取消</button><button type="submit" class="secondary">保存书签</button></div><p id="note-error" class="inline-error" role="alert" hidden></p></form></dialog>
+  <dialog id="record-dialog"><form id="record-form"><div class="drawer-heading"><h2>编辑视频</h2><button type="button" data-close-dialog="record-dialog" class="icon-button" aria-label="关闭编辑视频">×</button></div><label for="record-name">保存名称</label><input id="record-name" maxlength="200" placeholder="留空使用原标题"><label for="record-group">所属分组</label><select id="record-group"></select><div class="dialog-actions"><button type="button" data-close-dialog="record-dialog" class="secondary">取消</button><button class="secondary" type="submit">保存修改</button></div><p id="record-error" class="inline-error" role="alert" hidden></p></form></dialog>
+  <dialog id="group-dialog"><form id="group-form"><div class="drawer-heading"><h2 id="group-dialog-title">新建分组</h2><button type="button" data-close-dialog="group-dialog" class="icon-button" aria-label="关闭分组编辑">×</button></div><label for="group-name">分组名称</label><input id="group-name" maxlength="60" required><label for="group-parent">上级分组</label><select id="group-parent"></select><div class="dialog-actions"><button type="button" data-close-dialog="group-dialog" class="secondary">取消</button><button class="secondary" type="submit">保存分组</button></div><p id="group-error" class="inline-error" role="alert" hidden></p></form></dialog>
+  <dialog id="group-delete-dialog"><div class="drawer-heading"><h2>删除分组</h2><button type="button" data-close-dialog="group-delete-dialog" class="icon-button" aria-label="关闭删除分组">×</button></div><p id="group-delete-summary" class="help"></p><div class="dialog-actions"><button type="button" data-close-dialog="group-delete-dialog" class="secondary">取消</button><button id="group-delete-confirm" class="secondary danger">删除分组并保留视频</button></div><p id="group-delete-error" class="inline-error" role="alert" hidden></p></dialog>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

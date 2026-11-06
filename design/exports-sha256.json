@@ -1,0 +1,22 @@
+[
+  {
+    "file": "design/approved-purple-icon.png",
+    "sha256": "1e8c92481a52510cd3125fc74a737618059dd199047dcee3157ff6890ca40d04"
+  },
+  {
+    "file": "icons/16.png",
+    "sha256": "532a022fb9150dfef33b7c3f9ef665a80099ac75ed2b1aa74620c50e5991a6b3"
+  },
+  {
+    "file": "icons/32.png",
+    "sha256": "f2ed1c05bd465a6f71bcff348c43ce0d1f2e8d40ba2afef712416110762d86b5"
+  },
+  {
+    "file": "icons/48.png",
+    "sha256": "debd72350afa57afc7582af2b856cf8c763a2e5620524bccd8860928d8ae6a3e"
+  },
+  {
+    "file": "icons/128.png",
+    "sha256": "246c40a7d6b90b502c02c535e16855cb0dc77cbfe4cd1740eaac962bac5f4679"
+  }
+]

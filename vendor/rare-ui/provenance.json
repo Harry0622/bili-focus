@@ -1,0 +1,16 @@
+{
+  "registry": "https://raw.githubusercontent.com/swamimalode07/rare-ui/main/public/r/theme-selector.json",
+  "sourcePath": "components/ui/theme-selector.tsx",
+  "commit": "21554cba3ac751c1f9c06869eadb9d44a0af7225",
+  "fetchedAt": "2026-11-07",
+  "repository": "https://github.com/swamimalode07/rare-ui",
+  "sha256": "c943b1f3f1fceac9a04208942ed9601bc54a7cf6722f22bae212c9f985976c7b",
+  "license": "MIT + Commons Clause + Attribution",
+  "modified": false,
+  "toast": {
+    "registry": "https://raw.githubusercontent.com/swamimalode07/rare-ui/21554cba3ac751c1f9c06869eadb9d44a0af7225/public/r/toast.json",
+    "sourcePath": "components/ui/toast.tsx",
+    "sha256": "722a38460cf914b0566fe660ba3a9d0cdc92014071b0beb40af2b6dc493454ff",
+    "modified": false
+  }
+}

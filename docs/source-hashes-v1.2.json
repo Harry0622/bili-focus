@@ -1,0 +1,17 @@
+{
+  "version": "1.2.0",
+  "hashes": {
+    "manifest.json": "b5040ece6febaeb305d1d15b5c8bc01177b348e1d022ccf683b595224c264e67",
+    "popup.html": "9a7e0f53b12bba5cf01f6f906ffb147a4be3156333c2d285b00dbb3ac0141266",
+    "popup.js": "aec2e653f73ef4a645164ff3cee1869e7afd5412944e033711393b9e3783ed94",
+    "popup.css": "554938bbdcd4b40b0efd6aa2bcacacca8300db6638e8952b996b5193aabea12a",
+    "popup-custom.css": "72bb831cd82614d426aab11a9137a0ca647d4ea6dd5350f973d7f9da14130ac3",
+    "background.js": "9c597f87a68f970cfbac35c004f9c3209025903e74eab69c7fa0a5293b1c0efd",
+    "shared/model.js": "6065ae46e0e6be5c4ea11e55d49801d61efaeb723a3a73a47f0db4fdec050f36",
+    "shared/appearance.js": "2cfe85ec9eb7ae8340996714c9037a7fcd28e3f8f87159ab2128087f9328f144",
+    "shared/limits.js": "c96e5216ba33c4d9088a66a8daa355ddef92d2d740a6ba5cf2a2b0f96fd7980e",
+    "assets/rare-theme.js": "2abac8e5ee3b4daa2c1a743aed638bb1e0957aaea8fb27b53446b68c84b0eb59",
+    "assets/rare-theme.css": "18e22d4a88b53b04976ab27da8252a4f4872330f30999b49811522d5eeb76946",
+    "vendor/rare-ui/theme-selector.tsx": "c943b1f3f1fceac9a04208942ed9601bc54a7cf6722f22bae212c9f985976c7b"
+  }
+}

@@ -1,0 +1,70 @@
+/* v1.2: larger typography, cover rows and a color-aware visual hierarchy. */
+:root{--bg:#eff4f2;--surface:#fcfdfd;--raised:#ebf5f3;--hover:#e8f3f0;--text:#19332f;--muted:#576b65;--line:#cfdcd6;--accent:#0f766e;--primary:#0f766e;--primary-border:#0f766e;--on-primary:#fff;--selection:#e2efeb;--selection-line:#92bdb1}
+:root[data-theme=dark]{--bg:#101f25;--surface:#192c31;--raised:#173a3c;--hover:#1b3d3f;--text:#edf6f4;--muted:#a9bfba;--line:#3a504f;--accent:#80c7bd;--primary:#5ca29c;--primary-border:#5ca29c;--on-primary:#000;--selection:#174041;--selection-line:#397974}
+body{font-size:13px}
+.header{height:56px}
+h1{font-size:22px;letter-spacing:0}
+.header-actions .icon-button{color:var(--accent)}
+.focus{padding-bottom:12px}
+.focus h2{font-size:16px;line-height:24px}
+.focus-text p{font-size:12px;line-height:20px}
+.focus-cover{width:80px;height:48px;flex-shrink:0;border:0;border-radius:4px;background:transparent}
+.thumbnail{position:relative;display:grid;place-items:center;overflow:hidden;border:1px solid var(--line);border-radius:4px;background:var(--raised);color:var(--muted);flex-shrink:0}
+.thumbnail img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.thumbnail svg{width:24px;height:24px}
+.focus-thumbnail{width:80px;height:48px}
+.row-cover{width:64px;height:40px}
+.progress-info{font-size:12px;line-height:20px}
+#focus-progress{background:var(--accent)}
+.primary{font-size:16px;border-color:var(--primary-border)}
+.focus-foot{font-size:12px;line-height:20px;height:24px}
+.text-button{font-size:12px;line-height:20px}
+.library-toolbar{min-height:44px}
+.library h2{font-size:14px;line-height:20px}
+#count{font-size:12px}
+.filters button{font-size:12px;line-height:20px;padding:4px}
+.filters [aria-pressed=true]{color:var(--accent);background:var(--selection);border-color:var(--selection-line)}
+.list-row{height:64px;gap:8px}
+.list-row[aria-pressed=true]{background:var(--selection);border-color:var(--selection-line)}
+.row-title{font-size:14px;line-height:20px}
+.row-meta{font-size:12px;line-height:20px}
+.row-position{font-size:12px;line-height:20px}
+.list-row .row-position{max-width:48px;flex-shrink:0}
+.empty-list{font-size:13px}
+.utility-bar{height:44px}
+.utility-bar button{font-size:13px;line-height:20px;padding:4px}
+#bookmark-badge{font-size:12px}
+.utility-bar button[aria-expanded=true]{color:var(--accent);background:var(--selection);border-color:var(--selection-line)}
+.drawer{bottom:44px;max-height:420px}
+.drawer-heading h2{font-size:18px;line-height:24px}
+.help{font-size:12px;line-height:20px}
+.secondary{font-size:13px;line-height:20px;min-height:40px}
+input:not([type=checkbox]),select{font-size:13px}
+.add-options{font-size:12px}
+.setting-row{font-size:13px;line-height:20px}
+.setting-row small{font-size:12px;line-height:20px}
+.setting-row select{font-size:12px}
+.theme-heading{margin:8px 0}
+.theme-heading h3,.accent-heading h3{font-size:14px;line-height:20px;font-weight:600}
+.accent-heading{display:flex;justify-content:space-between;align-items:center;margin:12px 0 8px}
+.accent-row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.accent-presets{display:flex;gap:4px}
+.accent-presets button{display:grid;place-items:center;width:32px;height:32px;padding:4px;border:1px solid transparent;border-radius:4px;background:transparent}
+.accent-presets button span{display:block;width:20px;height:20px;background:var(--swatch);border-radius:4px}
+.accent-presets [aria-pressed=true]{border-color:var(--accent);background:var(--selection)}
+.accent-presets button:hover{background:var(--raised)}
+.accent-custom{display:flex;gap:8px;align-items:center}
+#accent-picker{width:32px;height:32px;padding:0;border:1px solid var(--line);border-radius:4px;cursor:pointer;overflow:hidden;background:transparent}
+#accent-picker::-webkit-color-swatch-wrapper{padding:4px}
+#accent-picker::-webkit-color-swatch{border:0;border-radius:4px}
+#accent-hex{width:96px;height:32px;font:12px/20px ui-monospace,Consolas,monospace;padding:4px 8px}
+summary{font-size:13px;line-height:20px}
+#storage-usage{font-size:12px}
+.cleanup-preview{font-size:13px}
+.bookmark-jump time{font-size:13px}
+.bookmark-jump span{font-size:13px}
+.credits{font-size:12px}
+.inline-error,#toast{font-size:13px}
+#toast button{font-size:13px}
+#storage-warning{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 16px;flex-shrink:0;color:var(--text);background:var(--selection);border-bottom:1px solid var(--selection-line);font-size:12px;line-height:20px}
+#storage-warning button{border:1px solid var(--selection-line);border-radius:4px;padding:4px 8px;background:var(--surface);color:var(--accent);font-size:12px;white-space:nowrap}

@@ -1,0 +1,1 @@
+{"passed":["新popup读取当前播放秒数并新增书签，续播位置不变","seeked采集及反向拖动","以播放器实际位置为准","受控SPA切P等待媒体边界，P1/P2隔离","关页与未关注页不写进度"],"scope":"Real extension/storage/content script; a controlled HTMLMediaElement replaces the Bilibili production player"}

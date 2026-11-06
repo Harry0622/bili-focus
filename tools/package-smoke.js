@@ -1,0 +1,10 @@
+// Run with only the unzipped runtime package loaded, without the source checkout.
+async page => {
+  const ctx=page.context();let worker;for(const w of ctx.serviceWorkers())if(await w.evaluate(()=>chrome.runtime.getManifest().version)==='1.3.0')worker=w;
+  if(!worker)throw Error('Runtime package worker missing');const origin=worker.url().replace('/background.js',''),errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(`${origin}/popup.html`);await page.locator('body[data-ready=true]').waitFor();await page.getByRole('button',{name:'新建分组',exact:true}).click();await page.locator('#group-name').fill('安装包核验');await page.getByRole('button',{name:'保存分组',exact:true}).click();
+  await page.waitForFunction(()=>document.querySelector('[data-slot=toast-title]')?.textContent==='分组已创建');await page.waitForFunction(()=>{const icon=document.querySelector('[data-slot=toast-icon]');return icon&&Number(getComputedStyle(icon).opacity)>.99;});await page.screenshot({path:'output/playwright/v13-package-feedback.png'});
+  await page.getByRole('button',{name:'设置',exact:true}).click();await page.locator('#rare-theme-host[data-rare-state=ready] [data-slot=theme-selector]').waitFor();await page.getByRole('radio',{name:'深色',exact:true}).click();await page.waitForFunction(()=>document.documentElement.dataset.theme==='dark');
+  const result=await page.evaluate(()=>({version:chrome.runtime.getManifest().version,ready:document.body.dataset.ready,groups:document.querySelectorAll('.group-row').length,officialTheme:!!document.querySelector('[data-slot=theme-selector]'),officialFeedback:!!document.querySelector('[data-slot=toast-icon]'),iconLoaded:document.querySelector('.brand img').naturalWidth,body:[document.body.offsetWidth,document.body.offsetHeight]}));
+  if(errors.length||result.iconLoaded!==32||!result.officialTheme||!result.officialFeedback)throw Error(JSON.stringify({result,errors}));return {...result,errors,scope:'Unzipped runtime package; source-only ui/tools/node_modules absent'};
+}

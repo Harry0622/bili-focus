@@ -1,0 +1,1 @@
+{"passed":["400×520尺寸与单主按钮44px点击区","初次打开不请求Rare UI/React资源","紧凑清单选择后续播目标改变","书签修改与进度隔离","删除与撤销","番剧错误提示","真实Rare UI主题组件与方向键操作","主题选择重开后持久化","采样设置","清理预览与整批撤销","空状态主操作","设置展开后高度仍不超过520px"],"dimensions":{"width":400,"height":520,"scrollWidth":400,"scrollHeight":520,"primaryCount":1,"hitHeight":48,"initialRare":0},"pageErrors":[]}
