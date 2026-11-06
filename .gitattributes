@@ -1,0 +1,6 @@
+# Preserve upstream SHA-256 checksums on Windows and across fresh checkouts.
+* text=auto eol=lf
+*.png binary
+*.zip binary
+assets/** linguist-generated=true
+vendor/** linguist-vendored=true
